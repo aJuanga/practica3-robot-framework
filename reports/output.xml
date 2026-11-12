@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.13.18 on linux)" generated="2026-11-12T14:36:56.655054" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="/home/claude/practica3-robot-framework/tests">
+<suite id="s1-s1" name="01 Login Correcto" source="/home/claude/practica3-robot-framework/tests/01_login_correcto.robot">
+<kw name="Preparar Usuario Valido" type="SETUP">
+<kw name="Generar Email Unico" owner="ApiHelper">
+<msg time="2026-11-12T14:36:56.931777" level="INFO">${email} = juan.robot.1794508616931@qa-test.com</msg>
+<var>${email}</var>
+<status status="PASS" start="2026-11-12T14:36:56.931529" elapsed="0.000300"/>
+</kw>
+<kw name="Crear Usuario De Prueba Por API" owner="ApiHelper">
+<msg time="2026-11-12T14:36:57.568750" level="INFO">POST /createAccount -&gt; {'responseCode': 201, 'message': 'User created!'}</msg>
+<arg>${USUARIO_NOMBRE}</arg>
+<arg>${email}</arg>
+<arg>${USUARIO_PASSWORD}</arg>
+<status status="PASS" start="2026-11-12T14:36:56.932001" elapsed="0.636920"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-11-12T14:36:57.570189" level="INFO">${EMAIL_VALIDO} = juan.robot.1794508616931@qa-test.com</msg>
+<arg>${EMAIL_VALIDO}</arg>
+<arg>${email}</arg>
+<doc>Makes the variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-11-12T14:36:57.569236" elapsed="0.001010"/>
+</kw>
+<status status="PASS" start="2026-11-12T14:36:56.930650" elapsed="0.639813"/>
+</kw>
+<test id="s1-s1-t1" name="EJ1 Login Correcto Con Credenciales Validas" line="10">
+<kw name="Abrir Navegador En" owner="common_keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:36:57.571990" level="INFO">Opening browser 'headlesschrome' to base url 'https://automationexercise.com'.</msg>
+<arg>${url}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-11-12T14:36:57.571765" elapsed="6.139950"/>
+</kw>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1400</arg>
+<arg>950</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2026-11-12T14:37:03.712051" elapsed="0.043750"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>${TIMEOUT}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2026-11-12T14:37:03.756014" elapsed="0.000959"/>
+</kw>
+<kw name="Aceptar Consentimiento Si Aparece" owner="common_keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:06.922837" level="FAIL">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</msg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-11-12T14:37:03.758524" elapsed="3.167257">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</status>
+</kw>
+<msg time="2026-11-12T14:37:06.925991" level="INFO">${visible} = False</msg>
+<var>${visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-11-12T14:37:03.757483" elapsed="3.168538"/>
+</kw>
+<if>
+<branch type="IF" condition="${visible}">
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${BOTON_CONSENTIR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-11-12T14:37:06.926445" elapsed="0.000036"/>
+</kw>
+<status status="NOT RUN" start="2026-11-12T14:37:06.926153" elapsed="0.000386"/>
+</branch>
+<status status="PASS" start="2026-11-12T14:37:06.926109" elapsed="0.000480"/>
+</if>
+<doc>Cierra el aviso de cookies si el sitio lo muestra (depende de la región).</doc>
+<status status="PASS" start="2026-11-12T14:37:03.757230" elapsed="3.169430"/>
+</kw>
+<arg>${URL_BASE}</arg>
+<doc>Abre el navegador configurado en la URL indicada y maximiza la ventana.</doc>
+<status status="PASS" start="2026-11-12T14:36:57.571197" elapsed="9.355518"/>
+</kw>
+<kw name="Ir A La Pagina De Login" owner="login_keywords">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:06.927280" level="INFO">Opening url 'https://automationexercise.com/login'</msg>
+<arg>${URL_LOGIN}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-11-12T14:37:06.927150" elapsed="0.561994"/>
+</kw>
+<kw name="Aceptar Consentimiento Si Aparece" owner="common_keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:10.675254" level="FAIL">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</msg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-11-12T14:37:07.491413" elapsed="3.185222">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</status>
+</kw>
+<msg time="2026-11-12T14:37:10.676892" level="INFO">${visible} = False</msg>
+<var>${visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-11-12T14:37:07.489960" elapsed="3.186964"/>
+</kw>
+<if>
+<branch type="IF" condition="${visible}">
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${BOTON_CONSENTIR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-11-12T14:37:10.677368" elapsed="0.000055"/>
+</kw>
+<status status="NOT RUN" start="2026-11-12T14:37:10.677073" elapsed="0.000429"/>
+</branch>
+<status status="PASS" start="2026-11-12T14:37:10.677026" elapsed="0.000596"/>
+</if>
+<doc>Cierra el aviso de cookies si el sitio lo muestra (depende de la región).</doc>
+<status status="PASS" start="2026-11-12T14:37:07.489587" elapsed="3.188133"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_EMAIL}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-12T14:37:10.677920" elapsed="0.022177"/>
+</kw>
+<status status="PASS" start="2026-11-12T14:37:06.926899" elapsed="3.773296"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:10.705974" level="INFO">Page title is 'Automation Exercise - Signup / Login'.</msg>
+<arg>${TITULO_LOGIN}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-11-12T14:37:10.700368" elapsed="0.005726"/>
+</kw>
+<kw name="Iniciar Sesion Con" owner="login_keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:10.707218" level="INFO">Typing text 'juan.robot.1794508616931@qa-test.com' into text field 'css:input[data-qa="login-email"]'.</msg>
+<arg>${LOGIN_EMAIL}</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:10.706925" elapsed="0.154409"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:10.861958" level="INFO">Typing password into text field 'css:input[data-qa="login-password"]'.</msg>
+<msg time="2026-11-12T14:37:10.892707" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>${LOGIN_PASSWORD}</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:10.861607" elapsed="0.086580"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:10.948656" level="INFO">Clicking button 'css:button[data-qa="login-button"]'.</msg>
+<arg>${LOGIN_BOTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:10.948422" elapsed="1.982704"/>
+</kw>
+<arg>${EMAIL_VALIDO}</arg>
+<arg>${USUARIO_PASSWORD}</arg>
+<doc>Completa el formulario "Login to your account" y lo envía.</doc>
+<status status="PASS" start="2026-11-12T14:37:10.706478" elapsed="2.224784"/>
+</kw>
+<kw name="Validar Sesion Iniciada" owner="login_keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${MENU_LOGUEADO}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-12T14:37:12.931939" elapsed="0.045256"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:13.004772" level="INFO">Element 'xpath://a[contains(.,"Logged in as")]' contains text 'Logged in as Juan QA Robot'.</msg>
+<arg>${MENU_LOGUEADO}</arg>
+<arg>${TEXTO_LOGUEADO} ${nombre}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-11-12T14:37:12.977521" elapsed="0.027402"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:13.030417" level="INFO">Element 'css:a[href="/logout"]' is displayed.</msg>
+<arg>${MENU_LOGOUT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-12T14:37:13.005179" elapsed="0.025398"/>
+</kw>
+<kw name="Page Should Not Contain" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:13.373390" level="INFO">Current page does not contain text 'Your email or password is incorrect!'.</msg>
+<arg>${MENSAJE_ERROR_LOGIN}</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<status status="PASS" start="2026-11-12T14:37:13.030899" elapsed="0.342621"/>
+</kw>
+<kw name="Location Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:13.377766" level="INFO">Current location is 'https://automationexercise.com/'.</msg>
+<arg>${URL_BASE}/</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<status status="PASS" start="2026-11-12T14:37:13.373725" elapsed="0.004155"/>
+</kw>
+<arg>${USUARIO_NOMBRE}</arg>
+<doc>Validaciones del acceso exitoso.</doc>
+<status status="PASS" start="2026-11-12T14:37:12.931614" elapsed="0.446364"/>
+</kw>
+<kw name="Capturar Evidencia" owner="common_keywords">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:13.481530" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/EJ1_login_correcto_sesion_iniciada.png"&gt;&lt;img src="../screenshots/EJ1_login_correcto_sesion_iniciada.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-12T14:37:13.378600" elapsed="0.103071"/>
+</kw>
+<arg>EJ1_login_correcto_sesion_iniciada</arg>
+<doc>Guarda una captura con el nombre del ejercicio y el paso.</doc>
+<status status="PASS" start="2026-11-12T14:37:13.378196" elapsed="0.103581"/>
+</kw>
+<kw name="Cerrar Sesion" owner="login_keywords">
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:13.482586" level="INFO">Clicking link 'css:a[href="/logout"]'.</msg>
+<arg>${MENU_LOGOUT}</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:13.482277" elapsed="0.542311"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_EMAIL}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.024913" elapsed="0.016042"/>
+</kw>
+<status status="PASS" start="2026-11-12T14:37:13.481991" elapsed="0.559104"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:14.044906" level="INFO">Current location contains '/login'.</msg>
+<arg>/login</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.041254" elapsed="0.003762"/>
+</kw>
+<kw name="Capturar Evidencia" owner="common_keywords">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:14.197636" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/EJ1_login_correcto_sesion_cerrada.png"&gt;&lt;img src="../screenshots/EJ1_login_correcto_sesion_cerrada.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.045630" elapsed="0.152164"/>
+</kw>
+<arg>EJ1_login_correcto_sesion_cerrada</arg>
+<doc>Guarda una captura con el nombre del ejercicio y el paso.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.045270" elapsed="0.152650"/>
+</kw>
+<kw name="Cerrar Navegador Con Evidencia" owner="common_keywords" type="TEARDOWN">
+<kw name="Run Keyword If Test Failed" owner="BuiltIn">
+<arg>Capture Page Screenshot</arg>
+<arg>FALLO_${TEST NAME}.png</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.198848" elapsed="0.000386"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.199418" elapsed="0.082822"/>
+</kw>
+<doc>Si el caso falló, guarda una captura antes de cerrar.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.198426" elapsed="0.084008"/>
+</kw>
+<doc>Un usuario registrado inicia sesión y accede al sistema.</doc>
+<tag>ejercicio1</tag>
+<tag>login</tag>
+<tag>positivo</tag>
+<status status="PASS" start="2026-11-12T14:36:57.570643" elapsed="16.711849"/>
+</test>
+<kw name="Eliminar Usuario De Prueba Por API" owner="ApiHelper" type="TEARDOWN">
+<msg time="2026-11-12T14:37:14.847601" level="INFO">DELETE /deleteAccount -&gt; {'responseCode': 200, 'message': 'Account deleted!'}</msg>
+<arg>${EMAIL_VALIDO}</arg>
+<arg>${USUARIO_PASSWORD}</arg>
+<status status="PASS" start="2026-11-12T14:37:14.283097" elapsed="0.564617"/>
+</kw>
+<doc>Ejercicio 1 - Login correcto: inicio de sesión con credenciales válidas.</doc>
+<status status="PASS" start="2026-11-12T14:36:56.701049" elapsed="18.146735"/>
+</suite>
+<suite id="s1-s2" name="02 Login Incorrecto" source="/home/claude/practica3-robot-framework/tests/02_login_incorrecto.robot">
+<test id="s1-s2-t1" name="EJ2 Login Incorrecto Muestra Mensaje De Error" line="7">
+<kw name="Abrir Navegador En" owner="common_keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:14.851431" level="INFO">Opening browser 'headlesschrome' to base url 'https://automationexercise.com/login'.</msg>
+<arg>${url}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.851261" elapsed="3.783974"/>
+</kw>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1400</arg>
+<arg>950</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2026-11-12T14:37:18.636533" elapsed="0.023359"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>${TIMEOUT}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2026-11-12T14:37:18.660161" elapsed="0.001657"/>
+</kw>
+<kw name="Aceptar Consentimiento Si Aparece" owner="common_keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:21.817921" level="FAIL">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</msg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-11-12T14:37:18.664065" elapsed="3.155236">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</status>
+</kw>
+<msg time="2026-11-12T14:37:21.819587" level="INFO">${visible} = False</msg>
+<var>${visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-11-12T14:37:18.663353" elapsed="3.156267"/>
+</kw>
+<if>
+<branch type="IF" condition="${visible}">
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${BOTON_CONSENTIR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-11-12T14:37:21.820071" elapsed="0.000151"/>
+</kw>
+<status status="NOT RUN" start="2026-11-12T14:37:21.819805" elapsed="0.000464"/>
+</branch>
+<status status="PASS" start="2026-11-12T14:37:21.819762" elapsed="0.000591"/>
+</if>
+<doc>Cierra el aviso de cookies si el sitio lo muestra (depende de la región).</doc>
+<status status="PASS" start="2026-11-12T14:37:18.662784" elapsed="3.157644"/>
+</kw>
+<arg>${URL_LOGIN}</arg>
+<doc>Abre el navegador configurado en la URL indicada y maximiza la ventana.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.850970" elapsed="6.969528"/>
+</kw>
+<kw name="Iniciar Sesion Con" owner="login_keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:21.821419" level="INFO">Typing text 'usuario.inexistente.robot@qa-test.com' into text field 'css:input[data-qa="login-email"]'.</msg>
+<arg>${LOGIN_EMAIL}</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:21.821107" elapsed="0.119447"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:21.941082" level="INFO">Typing password into text field 'css:input[data-qa="login-password"]'.</msg>
+<msg time="2026-11-12T14:37:21.970994" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>${LOGIN_PASSWORD}</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:21.940778" elapsed="0.107598"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:22.048977" level="INFO">Clicking button 'css:button[data-qa="login-button"]'.</msg>
+<arg>${LOGIN_BOTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.048662" elapsed="0.647174"/>
+</kw>
+<arg>${EMAIL_INVALIDO}</arg>
+<arg>${PASSWORD_INVALIDO}</arg>
+<doc>Completa el formulario "Login to your account" y lo envía.</doc>
+<status status="PASS" start="2026-11-12T14:37:21.820728" elapsed="0.875265"/>
+</kw>
+<kw name="Validar Error De Login" owner="login_keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_ERROR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.696665" elapsed="0.020740"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:22.718034" level="INFO">Verifying element 'xpath://form[@action="/login"]//p[contains(.,"incorrect")]' contains exact text 'Your email or password is incorrect!'.</msg>
+<arg>${LOGIN_ERROR}</arg>
+<arg>${MENSAJE_ERROR_LOGIN}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.717675" elapsed="0.019430"/>
+</kw>
+<kw name="Page Should Not Contain Element" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:22.746381" level="INFO">Current page does not contain element 'xpath://a[contains(.,"Logged in as")]'.</msg>
+<arg>${MENU_LOGUEADO}</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.737395" elapsed="0.009140"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:22.753293" level="INFO">Current location contains '/login'.</msg>
+<arg>/login</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.746799" elapsed="0.006635"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:22.758678" level="INFO">Page title is 'Automation Exercise - Signup / Login'.</msg>
+<arg>${TITULO_LOGIN}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.753636" elapsed="0.005157"/>
+</kw>
+<doc>Validaciones del rechazo de credenciales.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.696246" elapsed="0.062663"/>
+</kw>
+<kw name="Capturar Evidencia" owner="common_keywords">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:22.927000" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/EJ2_login_incorrecto_mensaje_error.png"&gt;&lt;img src="../screenshots/EJ2_login_incorrecto_mensaje_error.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.759736" elapsed="0.167431"/>
+</kw>
+<arg>EJ2_login_incorrecto_mensaje_error</arg>
+<doc>Guarda una captura con el nombre del ejercicio y el paso.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.759197" elapsed="0.168081"/>
+</kw>
+<kw name="Cerrar Navegador Con Evidencia" owner="common_keywords" type="TEARDOWN">
+<kw name="Run Keyword If Test Failed" owner="BuiltIn">
+<arg>Capture Page Screenshot</arg>
+<arg>FALLO_${TEST NAME}.png</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.927880" elapsed="0.001102"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.929138" elapsed="0.079302"/>
+</kw>
+<doc>Si el caso falló, guarda una captura antes de cerrar.</doc>
+<status status="PASS" start="2026-11-12T14:37:22.927598" elapsed="0.080997"/>
+</kw>
+<doc>Un correo no registrado con contraseña cualquiera no puede ingresar.</doc>
+<tag>ejercicio2</tag>
+<tag>login</tag>
+<tag>negativo</tag>
+<status status="PASS" start="2026-11-12T14:37:14.850589" elapsed="8.158073"/>
+</test>
+<doc>Ejercicio 2 - Login incorrecto: el sistema rechaza credenciales inválidas.</doc>
+<status status="PASS" start="2026-11-12T14:37:14.848370" elapsed="8.160819"/>
+</suite>
+<suite id="s1-s3" name="03 Busqueda Productos" source="/home/claude/practica3-robot-framework/tests/03_busqueda_productos.robot">
+<test id="s1-s3-t1" name="EJ3 Buscar Productos Por Nombre" line="7">
+<kw name="Abrir Navegador En" owner="common_keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:23.015917" level="INFO">Opening browser 'headlesschrome' to base url 'https://automationexercise.com'.</msg>
+<arg>${url}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-11-12T14:37:23.015712" elapsed="3.963344"/>
+</kw>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1400</arg>
+<arg>950</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2026-11-12T14:37:26.979387" elapsed="0.035951"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>${TIMEOUT}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2026-11-12T14:37:27.015575" elapsed="0.007305"/>
+</kw>
+<kw name="Aceptar Consentimiento Si Aparece" owner="common_keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:30.196596" level="FAIL">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</msg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-11-12T14:37:27.023937" elapsed="3.173411">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</status>
+</kw>
+<msg time="2026-11-12T14:37:30.197527" level="INFO">${visible} = False</msg>
+<var>${visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-11-12T14:37:27.023605" elapsed="3.173940"/>
+</kw>
+<if>
+<branch type="IF" condition="${visible}">
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${BOTON_CONSENTIR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-11-12T14:37:30.197800" elapsed="0.000084"/>
+</kw>
+<status status="NOT RUN" start="2026-11-12T14:37:30.197646" elapsed="0.000262"/>
+</branch>
+<status status="PASS" start="2026-11-12T14:37:30.197616" elapsed="0.000319"/>
+</if>
+<doc>Cierra el aviso de cookies si el sitio lo muestra (depende de la región).</doc>
+<status status="PASS" start="2026-11-12T14:37:27.023243" elapsed="3.174733"/>
+</kw>
+<arg>${URL_BASE}</arg>
+<doc>Abre el navegador configurado en la URL indicada y maximiza la ventana.</doc>
+<status status="PASS" start="2026-11-12T14:37:23.015298" elapsed="7.182714"/>
+</kw>
+<kw name="Ir A La Seccion De Productos" owner="product_keywords">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:30.199275" level="INFO">Opening url 'https://automationexercise.com/products'</msg>
+<arg>${URL_PRODUCTOS}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-11-12T14:37:30.198626" elapsed="1.212340"/>
+</kw>
+<kw name="Aceptar Consentimiento Si Aparece" owner="common_keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:34.584814" level="FAIL">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</msg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-11-12T14:37:31.411962" elapsed="3.173765">Element 'css:button.fc-cta-consent' not visible after 3 seconds.</status>
+</kw>
+<msg time="2026-11-12T14:37:34.585916" level="INFO">${visible} = False</msg>
+<var>${visible}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${BOTON_CONSENTIR}</arg>
+<arg>3s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-11-12T14:37:31.411646" elapsed="3.174294"/>
+</kw>
+<if>
+<branch type="IF" condition="${visible}">
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${BOTON_CONSENTIR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-11-12T14:37:34.586248" elapsed="0.000025"/>
+</kw>
+<status status="NOT RUN" start="2026-11-12T14:37:34.586060" elapsed="0.000241"/>
+</branch>
+<status status="PASS" start="2026-11-12T14:37:34.586026" elapsed="0.003333"/>
+</if>
+<doc>Cierra el aviso de cookies si el sitio lo muestra (depende de la región).</doc>
+<status status="PASS" start="2026-11-12T14:37:31.411345" elapsed="3.178116"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:34.595557" level="INFO">Page title is 'Automation Exercise - All Products'.</msg>
+<arg>${TITULO_PRODUCTOS}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-11-12T14:37:34.589646" elapsed="0.005997"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BUSCADOR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-12T14:37:34.595793" elapsed="0.015434"/>
+</kw>
+<status status="PASS" start="2026-11-12T14:37:30.198148" elapsed="4.413229"/>
+</kw>
+<kw name="Capturar Evidencia" owner="common_keywords">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:34.700726" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/EJ3_seccion_productos.png"&gt;&lt;img src="../screenshots/EJ3_seccion_productos.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-12T14:37:34.611901" elapsed="0.088997"/>
+</kw>
+<arg>EJ3_seccion_productos</arg>
+<doc>Guarda una captura con el nombre del ejercicio y el paso.</doc>
+<status status="PASS" start="2026-11-12T14:37:34.611586" elapsed="0.089664"/>
+</kw>
+<kw name="Buscar Producto" owner="product_keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:34.702293" level="INFO">Typing text 'Jeans' into text field 'id:search_product'.</msg>
+<arg>${BUSCADOR}</arg>
+<arg>${termino}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:34.701980" elapsed="0.111542"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:34.814120" level="INFO">Clicking button 'id:submit_search'.</msg>
+<arg>${BOTON_BUSCAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:34.813778" elapsed="0.856241"/>
+</kw>
+<arg>${TERMINO_BUSQUEDA}</arg>
+<status status="PASS" start="2026-11-12T14:37:34.701556" elapsed="0.968582"/>
+</kw>
+<kw name="Validar Resultados De Busqueda" owner="product_keywords">
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>${TITULO_SECCION}</arg>
+<arg>${TITULO_RESULTADOS}</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.671760" elapsed="0.013718"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:35.689049" level="INFO">Current location contains 'search=Jeans'.</msg>
+<arg>search=${termino}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.685638" elapsed="0.003511"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:35.695486" level="INFO">Current page contains element 'css:.features_items .productinfo p'.</msg>
+<arg>${TARJETAS_PRODUCTO}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.689392" elapsed="0.006177"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:35.700501" level="INFO">${productos} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="280202e59dda28e7c73eb2c1b2b53600", element="f.0FC5EDFE1D180EA7C856638D25156BF8.d.7DABD051DBDE08C0034896035604D0C5.e.1651")&gt;, &lt;selenium.webdr...</msg>
+<var>${productos}</var>
+<arg>${TARJETAS_PRODUCTO}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.695704" elapsed="0.004831"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2026-11-12T14:37:35.701150" level="INFO">Length is 3.</msg>
+<msg time="2026-11-12T14:37:35.701223" level="INFO">${total} = 3</msg>
+<var>${total}</var>
+<arg>${productos}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.700658" elapsed="0.000581"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${total} &gt; 0</arg>
+<arg>No se encontraron productos para "${termino}"</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.701443" elapsed="0.000332"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:35.712243" level="INFO">${nombre} = Soft Stretch  Jeans</msg>
+<var>${nombre}</var>
+<arg>${producto}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.702062" elapsed="0.010220"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${nombre.lower()}</arg>
+<arg>${termino.lower()}</arg>
+<arg>msg=El producto "${nombre}" no corresponde a la búsqueda "${termino}"</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.712473" elapsed="0.000679"/>
+</kw>
+<var name="${producto}">&lt;selenium.webdriver.remote.webelement.WebElement (session="280202e59dda28e7c73eb2c1b2b53600", element="f.0FC5EDFE1D180EA7C856638D25156BF8.d.7DABD051DBDE08C0034896035604D0C5.e.1651")&gt;</var>
+<status status="PASS" start="2026-11-12T14:37:35.701985" elapsed="0.011227"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:35.721478" level="INFO">${nombre} = Regular Fit Straight Jeans</msg>
+<var>${nombre}</var>
+<arg>${producto}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.713555" elapsed="0.007963"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${nombre.lower()}</arg>
+<arg>${termino.lower()}</arg>
+<arg>msg=El producto "${nombre}" no corresponde a la búsqueda "${termino}"</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.721707" elapsed="0.000470"/>
+</kw>
+<var name="${producto}">&lt;selenium.webdriver.remote.webelement.WebElement (session="280202e59dda28e7c73eb2c1b2b53600", element="f.0FC5EDFE1D180EA7C856638D25156BF8.d.7DABD051DBDE08C0034896035604D0C5.e.1663")&gt;</var>
+<status status="PASS" start="2026-11-12T14:37:35.713444" elapsed="0.008777"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:35.794812" level="INFO">${nombre} = Grunt Blue Slim Fit Jeans</msg>
+<var>${nombre}</var>
+<arg>${producto}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.722508" elapsed="0.072348"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${nombre.lower()}</arg>
+<arg>${termino.lower()}</arg>
+<arg>msg=El producto "${nombre}" no corresponde a la búsqueda "${termino}"</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.795064" elapsed="0.000570"/>
+</kw>
+<var name="${producto}">&lt;selenium.webdriver.remote.webelement.WebElement (session="280202e59dda28e7c73eb2c1b2b53600", element="f.0FC5EDFE1D180EA7C856638D25156BF8.d.7DABD051DBDE08C0034896035604D0C5.e.1657")&gt;</var>
+<status status="PASS" start="2026-11-12T14:37:35.722412" elapsed="0.073267"/>
+</iter>
+<var>${producto}</var>
+<value>@{productos}</value>
+<status status="PASS" start="2026-11-12T14:37:35.701839" elapsed="0.093891"/>
+</for>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-12T14:37:35.796135" level="INFO">Se encontraron 3 productos que contienen "Jeans"</msg>
+<arg>Se encontraron ${total} productos que contienen "${termino}"</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.795896" elapsed="0.000320"/>
+</kw>
+<return>
+<value>${total}</value>
+<status status="PASS" start="2026-11-12T14:37:35.796271" elapsed="0.000080"/>
+</return>
+<msg time="2026-11-12T14:37:35.796465" level="INFO">${total} = 3</msg>
+<var>${total}</var>
+<arg>${TERMINO_BUSQUEDA}</arg>
+<doc>Verifica el título, que existan resultados y que cada nombre contenga el término.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.670605" elapsed="0.125878"/>
+</kw>
+<kw name="Capturar Evidencia" owner="common_keywords">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-12T14:37:36.023197" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/EJ3_resultados_busqueda_Jeans.png"&gt;&lt;img src="../screenshots/EJ3_resultados_busqueda_Jeans.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.796861" elapsed="0.226506"/>
+</kw>
+<arg>EJ3_resultados_busqueda_${TERMINO_BUSQUEDA}</arg>
+<doc>Guarda una captura con el nombre del ejercicio y el paso.</doc>
+<status status="PASS" start="2026-11-12T14:37:35.796614" elapsed="0.226866"/>
+</kw>
+<kw name="Cerrar Navegador Con Evidencia" owner="common_keywords" type="TEARDOWN">
+<kw name="Run Keyword If Test Failed" owner="BuiltIn">
+<arg>Capture Page Screenshot</arg>
+<arg>FALLO_${TEST NAME}.png</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<status status="PASS" start="2026-11-12T14:37:36.024060" elapsed="0.000298"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-11-12T14:37:36.024454" elapsed="1.076314"/>
+</kw>
+<doc>Si el caso falló, guarda una captura antes de cerrar.</doc>
+<status status="PASS" start="2026-11-12T14:37:36.023798" elapsed="1.077107"/>
+</kw>
+<doc>Busca "Jeans" y valida que todos los resultados correspondan.</doc>
+<tag>busqueda</tag>
+<tag>ejercicio3</tag>
+<tag>productos</tag>
+<status status="PASS" start="2026-11-12T14:37:23.014866" elapsed="14.086096"/>
+</test>
+<doc>Ejercicio 3 - Búsqueda de productos: los resultados coinciden con el término buscado.</doc>
+<status status="PASS" start="2026-11-12T14:37:23.009794" elapsed="14.091539"/>
+</suite>
+<status status="PASS" start="2026-11-12T14:36:56.656205" elapsed="40.445592"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">busqueda</stat>
+<stat pass="1" fail="0" skip="0">ejercicio1</stat>
+<stat pass="1" fail="0" skip="0">ejercicio2</stat>
+<stat pass="1" fail="0" skip="0">ejercicio3</stat>
+<stat pass="2" fail="0" skip="0">login</stat>
+<stat pass="1" fail="0" skip="0">negativo</stat>
+<stat pass="1" fail="0" skip="0">positivo</stat>
+<stat pass="1" fail="0" skip="0">productos</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="3" fail="0" skip="0">Tests</stat>
+<stat name="01 Login Correcto" id="s1-s1" pass="1" fail="0" skip="0">Tests.01 Login Correcto</stat>
+<stat name="02 Login Incorrecto" id="s1-s2" pass="1" fail="0" skip="0">Tests.02 Login Incorrecto</stat>
+<stat name="03 Busqueda Productos" id="s1-s3" pass="1" fail="0" skip="0">Tests.03 Busqueda Productos</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
